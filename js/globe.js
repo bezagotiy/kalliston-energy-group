@@ -99,7 +99,13 @@ if (canvas) {
 
   function sizeOverlay() {
     width = wrap.offsetWidth || width;
+    // Pin the canvas display size in JS so COBE's per-frame resize (which reads
+    // canvas.clientWidth) stays bounded even if the stylesheet is cached/stale.
+    canvas.style.width = width + "px";
+    canvas.style.height = width + "px";
     if (routeCanvas) {
+      routeCanvas.style.width = width + "px";
+      routeCanvas.style.height = width + "px";
       routeCanvas.width = Math.round(width * DPR);
       routeCanvas.height = Math.round(width * DPR);
     }
@@ -108,6 +114,9 @@ if (canvas) {
 
   const onResize = function () { sizeOverlay(); };
   window.addEventListener("resize", onResize);
+  if (window.ResizeObserver) {
+    new ResizeObserver(sizeOverlay).observe(wrap);
+  }
 
   const SEGMENTS = 40;
   let shipT = 0;
@@ -207,8 +216,6 @@ if (canvas) {
         }
         const currentPhi = phi + dragOffset;
         state.phi = currentPhi;
-        state.width = width * 2;
-        state.height = width * 2;
         drawRoutes(currentPhi);
       },
     });
@@ -216,6 +223,9 @@ if (canvas) {
     requestAnimationFrame(function () {
       if (wrap) wrap.classList.add("is-ready");
     });
+    setTimeout(function () {
+      if (wrap) wrap.classList.add("is-ready");
+    }, 1000);
 
     // Drag to rotate.
     const onDown = function (e) {
