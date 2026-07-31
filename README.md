@@ -32,11 +32,13 @@ Both are free, open-source and already bundled into the project (no external
 CDN needed at runtime):
 
 - **3D globe** — [COBE](https://github.com/shuding/cobe) (MIT). A rotating WebGL
-  globe in the hero with champagne markers on major maritime ports. Drag it to
-  spin. Colours and the port list live in `js/globe.js` (edit the `markers`
-  array — each entry is `{ location: [latitude, longitude], size }`). If a
-  visitor's browser has no WebGL, the globe hides itself and the layout stays
-  intact.
+  globe in the hero with champagne markers on major maritime ports and
+  **animated shipping routes** (great-circle arcs with moving vessels drawn on a
+  synced overlay canvas). Drag it to spin. Everything lives in `js/globe.js`:
+  edit the `PORTS` array (`[latitude, longitude]`) to change ports, and the
+  `ROUTES` array (pairs of port indices, e.g. `[1, 11]` = Rotterdam → New York)
+  to change the lanes. If a visitor's browser has no WebGL, the globe hides
+  itself and the layout stays intact.
 - **Icons** — [Lucide](https://lucide.dev) (ISC). Clean line icons replace the
   old emoji. They live as an inline `<svg>` sprite at the top of `index.html`
   and are used with `<svg class="icon"><use href="#i-name"/></svg>`. To add a

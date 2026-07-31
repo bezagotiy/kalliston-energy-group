@@ -146,11 +146,13 @@ h3 { font-size: 1.35rem; }
 }
 .hero-globe {
   position: relative; z-index: 1; width: 100%; max-width: 520px; aspect-ratio: 1 / 1;
-  height: auto; margin: 0 auto; touch-action: pan-y;
+  height: auto; margin: 0 auto;
   opacity: 0; transition: opacity 0.9s ease;
-  contain: layout paint size;
 }
 .hero-globe.is-ready { opacity: 1; }
+.globe-base, .globe-routes { position: absolute; inset: 0; width: 100%; height: 100%; }
+.globe-base { touch-action: pan-y; contain: layout paint size; }
+.globe-routes { pointer-events: none; z-index: 2; }
 .hero-wave { position: absolute; bottom: -1px; left: 0; width: 100%; height: 90px; z-index: 1; }
 .hero-wave path { fill: var(--white); }
 

@@ -79,7 +79,10 @@
         </div>
       </div>
       <div class="hero-visual">
-        <canvas id="globe" class="hero-globe" width="1000" height="1000" role="img" aria-label="Rotating 3D globe highlighting major maritime ports"></canvas>
+        <div class="hero-globe">
+          <canvas id="globe" class="globe-base" width="1000" height="1000" role="img" aria-label="Rotating 3D globe with animated shipping routes between major maritime ports"></canvas>
+          <canvas id="globe-routes" class="globe-routes" aria-hidden="true"></canvas>
+        </div>
       </div>
     </div>
     <svg class="hero-wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0,64 C240,120 480,0 720,32 C960,64 1200,120 1440,72 L1440,120 L0,120 Z"></path></svg>
