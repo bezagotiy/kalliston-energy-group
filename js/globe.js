@@ -149,7 +149,7 @@ if (canvas) {
         }
       }
       if (frontCount === 0) continue;
-      rctx.strokeStyle = "rgba(226, 200, 140, 0.30)";
+      rctx.strokeStyle = "rgba(216, 195, 154, 0.30)";
       rctx.lineWidth = 1.1 * DPR;
       rctx.stroke();
 
@@ -171,16 +171,16 @@ if (canvas) {
           drawing = false;
         }
       }
-      rctx.strokeStyle = "rgba(255, 226, 158, 0.85)";
+      rctx.strokeStyle = "rgba(240, 219, 178, 0.85)";
       rctx.lineWidth = 1.6 * DPR;
       rctx.stroke();
 
       const ship = project(slerp(a, b, tp), phi, cx, cy, R);
       if (ship.front) {
         rctx.save();
-        rctx.shadowColor = "rgba(255, 214, 130, 0.9)";
+        rctx.shadowColor = "rgba(216, 182, 122, 0.9)";
         rctx.shadowBlur = 8 * DPR;
-        rctx.fillStyle = "rgba(255, 236, 190, 1)";
+        rctx.fillStyle = "rgba(248, 236, 210, 1)";
         rctx.beginPath();
         rctx.arc(ship.x, ship.y, 2.4 * DPR, 0, Math.PI * 2);
         rctx.fill();
@@ -205,9 +205,9 @@ if (canvas) {
       diffuse: 1.3,
       mapSamples: 20000,
       mapBrightness: 7,
-      baseColor: [0.36, 0.47, 0.62],
-      markerColor: [0.98, 0.85, 0.58],
-      glowColor: [0.22, 0.36, 0.52],
+      baseColor: [0.31, 0.42, 0.43],
+      markerColor: [0.85, 0.7, 0.47],
+      glowColor: [0.11, 0.2, 0.21],
       markers: markers,
       onRender: function (state) {
         if (!reduceMotion && pointerInteracting === null) {
