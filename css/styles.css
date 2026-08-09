@@ -340,7 +340,7 @@ h3 { font-size: 1.35rem; }
 }
 .contact-item h3 { font-size: 1.1rem; margin-bottom: 6px; }
 .contact-item p { color: #4c4a41; font-size: 0.95rem; }
-.contact-item a { color: var(--marine-800); font-weight: 500; }
+.contact-item a { color: inherit; font-weight: inherit; font-size: inherit; font-family: inherit; text-decoration: none; }
 .contact-item a:hover { text-decoration: underline; }
 
 /* ===================== FOOTER ===================== */
@@ -417,7 +417,8 @@ h3 { font-size: 1.35rem; }
 .hero-highlight strong { color: #fff; font-weight: 700; }
 .hero-highlight .icon { color: var(--gold); }
 .footer-legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
-.footer-legal a { color: var(--gold-soft); }
+.footer-legal a { color: inherit; font-weight: inherit; text-decoration: none; }
+.footer-legal a:hover { color: var(--gold-soft); }
 @media (max-width: 720px) {
   .hero-highlight { font-size: 0.92rem; padding: 9px 16px; }
   .footer-legal { justify-content: center; text-align: center; }
