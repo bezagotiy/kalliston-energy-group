@@ -405,3 +405,20 @@ h3 { font-size: 1.35rem; }
   .stats-grid { grid-template-columns: 1fr 1fr; }
   .steps { grid-template-columns: 1fr; }
 }
+
+
+/* ===================== 48H HIGHLIGHT / FOOTER LEGAL ===================== */
+.hero-highlight {
+  display: inline-flex; align-items: center; gap: 10px; margin: 22px 0 4px;
+  padding: 10px 20px; border: 1px solid var(--gold); border-radius: 999px;
+  background: rgba(0, 0, 0, 0.22); color: var(--gold-soft);
+  font-size: 1rem; letter-spacing: 0.01em;
+}
+.hero-highlight strong { color: #fff; font-weight: 700; }
+.hero-highlight .icon { color: var(--gold); }
+.footer-legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
+.footer-legal a { color: var(--gold-soft); }
+@media (max-width: 720px) {
+  .hero-highlight { font-size: 0.92rem; padding: 9px 16px; }
+  .footer-legal { justify-content: center; text-align: center; }
+}
