@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=8" />
+  <link rel="stylesheet" href="css/styles.css?v=9" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 </head>
 <body>
@@ -220,7 +220,13 @@
         <div class="apply-contactline">Prefer email? Write to <a href="mailto:crew@kalliston.energy">crew@kalliston.energy</a> or WhatsApp <a href="tel:+447874268606">+44 7874 268606</a></div>
       </div>
 
-      <form class="apply-form" id="applicationForm" novalidate>
+      <div class="apply-forms">
+        <div class="form-tabs" role="tablist" aria-label="What would you like to send?">
+          <button type="button" class="form-tab is-active" id="tab-seafarer" role="tab" aria-selected="true" aria-controls="applicationForm" data-target="applicationForm">I am a seafarer</button>
+          <button type="button" class="form-tab" id="tab-owner" role="tab" aria-selected="false" aria-controls="crewRequestForm" data-target="crewRequestForm">I am an owner / manager</button>
+        </div>
+
+      <form class="apply-form" id="applicationForm" role="tabpanel" aria-labelledby="tab-seafarer" novalidate>
         <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
         <input type="hidden" name="subject" value="New crew application — Kalliston website" />
         <input type="hidden" name="from_name" value="Kalliston Website" />
@@ -252,6 +258,38 @@
         <button type="submit" class="btn btn-primary btn-lg btn-block" id="submitBtn">Send Application</button>
         <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
       </form>
+
+      <form class="apply-form" id="crewRequestForm" role="tabpanel" aria-labelledby="tab-owner" novalidate hidden>
+        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+        <input type="hidden" name="subject" value="New crew request — Kalliston website" />
+        <input type="hidden" name="from_name" value="Kalliston Website" />
+        <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+
+        <div class="field-row">
+          <div class="field"><label for="cr_vessel_type">Vessel type <span class="req">*</span></label><input type="text" id="cr_vessel_type" name="vessel_type" required placeholder="e.g. Bulk carrier, LNG, Chemical tanker" /></div>
+          <div class="field"><label for="cr_rank">Rank required <span class="req">*</span></label><input type="text" id="cr_rank" name="rank_required" required placeholder="e.g. 2nd Engineer × 1, AB × 2" /></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="cr_port">Joining port <span class="req">*</span></label><input type="text" id="cr_port" name="joining_port" required placeholder="e.g. Rotterdam" /></div>
+          <div class="field"><label for="cr_date">Joining date <span class="req">*</span></label><input type="date" id="cr_date" name="joining_date" required /></div>
+        </div>
+        <div class="field"><label for="cr_nationality">Nationality preference</label><input type="text" id="cr_nationality" name="nationality_preference" placeholder="e.g. Ukrainian, Filipino, or no preference" /></div>
+
+        <p class="form-group-title">Contact details</p>
+        <div class="field-row">
+          <div class="field"><label for="cr_company">Company <span class="req">*</span></label><input type="text" id="cr_company" name="company" required placeholder="Shipowner or manager" /></div>
+          <div class="field"><label for="cr_person">Contact person <span class="req">*</span></label><input type="text" id="cr_person" name="contact_person" required placeholder="Full name" /></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="cr_email">Email <span class="req">*</span></label><input type="email" id="cr_email" name="email" required placeholder="you@company.com" /></div>
+          <div class="field"><label for="cr_phone">Phone / WhatsApp <span class="req">*</span></label><input type="tel" id="cr_phone" name="phone" required placeholder="+00 000 000 000" /></div>
+        </div>
+        <div class="field"><label for="cr_message">Additional details (optional)</label><textarea id="cr_message" name="message" rows="4" placeholder="Contract length, trading area, certificates required…"></textarea></div>
+        <label class="consent"><input type="checkbox" id="cr_consent" required /><span>I agree to the processing of the submitted data for crewing purposes. <span class="req">*</span></span></label>
+        <button type="submit" class="btn btn-primary btn-lg btn-block" id="crewSubmitBtn">Send Crew Request</button>
+        <p class="form-status" id="crewFormStatus" role="status" aria-live="polite"></p>
+      </form>
+      </div>
     </div>
   </section>
 
@@ -296,6 +334,6 @@
   <a href="#apply" class="floating-cta" aria-label="Apply now">Apply</a>
 
   <script type="module" src="js/globe.js?v=3"></script>
-  <script src="js/main.js?v=3"></script>
+  <script src="js/main.js?v=4"></script>
 </body>
 </html>

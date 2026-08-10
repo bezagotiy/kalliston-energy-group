@@ -207,3 +207,82 @@
     });
   }
 })();
+
+/* ===================== Apply tabs + crew request form ===================== */
+(function () {
+  "use strict";
+
+  var tabs = document.querySelectorAll(".form-tab");
+  var panels = {
+    applicationForm: document.getElementById("applicationForm"),
+    crewRequestForm: document.getElementById("crewRequestForm")
+  };
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      tabs.forEach(function (t) {
+        var on = t === tab;
+        t.classList.toggle("is-active", on);
+        t.setAttribute("aria-selected", String(on));
+      });
+      Object.keys(panels).forEach(function (key) {
+        var panel = panels[key];
+        if (panel) panel.hidden = key !== tab.getAttribute("data-target");
+      });
+    });
+  });
+
+  var crewForm = document.getElementById("crewRequestForm");
+  var crewBtn = document.getElementById("crewSubmitBtn");
+  var crewStatus = document.getElementById("crewFormStatus");
+
+  function status(msg, type) {
+    if (!crewStatus) return;
+    crewStatus.textContent = msg;
+    crewStatus.className = "form-status" + (type ? " " + type : "");
+  }
+
+  if (!crewForm) return;
+
+  crewForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    if (!crewForm.checkValidity()) {
+      crewForm.reportValidity();
+      return;
+    }
+
+    var accessKey = crewForm.querySelector('[name="access_key"]').value;
+    if (!accessKey || accessKey.indexOf("YOUR_WEB3FORMS") !== -1) {
+      status("The form is not configured yet. Add your Web3Forms access key to enable sending.", "error");
+      return;
+    }
+
+    crewBtn.classList.add("is-loading");
+    crewBtn.disabled = true;
+    crewBtn.textContent = "Sending\u2026";
+    status("Sending your crew request\u2026", "loading");
+
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: new FormData(crewForm)
+    })
+      .then(function (res) { return res.json(); })
+      .then(function (json) {
+        if (json.success) {
+          crewForm.reset();
+          status("Thank you! Your crew request has been sent. We will come back with candidates shortly.", "success");
+        } else {
+          status((json.message || "Something went wrong.") + " Please try again or email us directly.", "error");
+        }
+      })
+      .catch(function () {
+        status("Network error. Please check your connection and try again, or email us directly.", "error");
+      })
+      .finally(function () {
+        crewBtn.classList.remove("is-loading");
+        crewBtn.disabled = false;
+        crewBtn.textContent = "Send Crew Request";
+      });
+  });
+})();
