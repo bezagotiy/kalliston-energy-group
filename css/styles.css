@@ -120,6 +120,13 @@ h3 { font-size: 1.35rem; }
 }
 .main-nav a:hover::after { width: 100%; }
 .header-cta { padding: 10px 22px; }
+.header-ctas { display: flex; align-items: center; gap: 10px; }
+.btn-outline {
+  background: transparent; color: var(--marine-900);
+  border-color: rgba(28, 40, 42, 0.28);
+}
+.btn-outline:hover { background: var(--stone); border-color: var(--marine-800); color: var(--marine-900); }
+.mobile-nav .btn-outline { border-color: rgba(28, 40, 42, 0.28); }
 
 .nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
 .nav-toggle span { width: 24px; height: 2px; background: var(--marine-900); border-radius: 2px; transition: 0.25s; }
@@ -381,7 +388,7 @@ h3 { font-size: 1.35rem; }
   .steps { grid-template-columns: repeat(2, 1fr); gap: 32px; }
 }
 @media (max-width: 720px) {
-  .main-nav, .header-cta { display: none; }
+  .main-nav, .header-cta, .header-ctas { display: none; }
   .nav-toggle { display: flex; }
   .mobile-nav.open { display: flex; }
   .section { padding: 68px 0; }
@@ -443,3 +450,7 @@ h3 { font-size: 1.35rem; }
   padding-top: 18px; border-top: 1px solid var(--stone);
 }
 @media (max-width: 520px) { .form-tab { flex: 1 1 100%; } }
+
+
+/* Apply intro panes swap with the form tabs */
+.intro-pane[hidden] { display: none; }

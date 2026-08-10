@@ -218,17 +218,32 @@
     crewRequestForm: document.getElementById("crewRequestForm")
   };
 
+  var intros = document.querySelectorAll(".intro-pane");
+
+  function activate(target) {
+    tabs.forEach(function (t) {
+      var on = t.getAttribute("data-target") === target;
+      t.classList.toggle("is-active", on);
+      t.setAttribute("aria-selected", String(on));
+    });
+    Object.keys(panels).forEach(function (key) {
+      if (panels[key]) panels[key].hidden = key !== target;
+    });
+    intros.forEach(function (pane) {
+      pane.hidden = pane.getAttribute("data-pane") !== target;
+    });
+  }
+
   tabs.forEach(function (tab) {
     tab.addEventListener("click", function () {
-      tabs.forEach(function (t) {
-        var on = t === tab;
-        t.classList.toggle("is-active", on);
-        t.setAttribute("aria-selected", String(on));
-      });
-      Object.keys(panels).forEach(function (key) {
-        var panel = panels[key];
-        if (panel) panel.hidden = key !== tab.getAttribute("data-target");
-      });
+      activate(tab.getAttribute("data-target"));
+    });
+  });
+
+  // Any CTA with data-tab jumps to the apply section and opens the right tab.
+  document.querySelectorAll("a[data-tab]").forEach(function (link) {
+    link.addEventListener("click", function () {
+      activate(link.getAttribute("data-tab"));
     });
   });
 

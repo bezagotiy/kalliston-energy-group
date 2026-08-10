@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=10" />
+  <link rel="stylesheet" href="css/styles.css?v=11" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 </head>
 <body>
@@ -49,7 +49,10 @@
         <a href="#process">Process</a>
         <a href="#contact">Contact</a>
       </nav>
-      <a href="#apply" class="btn btn-primary header-cta">Apply Now</a>
+      <div class="header-ctas">
+        <a href="#apply" class="btn btn-outline header-cta" data-tab="crewRequestForm">Request Crew <span aria-hidden="true">&rarr;</span></a>
+        <a href="#apply" class="btn btn-primary header-cta" data-tab="applicationForm">Apply Now</a>
+      </div>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
     <div class="mobile-nav" hidden>
@@ -59,7 +62,8 @@
       <a href="#why">Why Us</a>
       <a href="#process">Process</a>
       <a href="#contact">Contact</a>
-      <a href="#apply" class="btn btn-primary">Apply Now</a>
+      <a href="#apply" class="btn btn-outline" data-tab="crewRequestForm">Request Crew &rarr;</a>
+      <a href="#apply" class="btn btn-primary" data-tab="applicationForm">Apply Now</a>
     </div>
   </header>
 
@@ -72,8 +76,8 @@
         <p class="hero-lead">Kalliston Energy Group Ltd connects shipowners and managers with certified, sea-ready officers and ratings — vetted, documented and ready to sail.</p>
         <p class="hero-highlight"><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-clock"/></svg><strong>Any Crew Vacancy Filled Within 48 Hours</strong></p>
         <div class="hero-actions">
-          <a href="#apply" class="btn btn-primary btn-lg">Submit Your Application</a>
-          <a href="#services" class="btn btn-ghost btn-lg">Our Services</a>
+          <a href="#apply" class="btn btn-primary btn-lg" data-tab="applicationForm">Submit Your Application</a>
+          <a href="#apply" class="btn btn-ghost btn-lg" data-tab="crewRequestForm">Request Crew <span aria-hidden="true">&rarr;</span></a>
         </div>
         <div class="hero-trust">
           <span><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg> MLC 2006 aligned</span>
@@ -209,14 +213,26 @@
   <section class="section apply-section" id="apply">
     <div class="container apply-grid">
       <div class="apply-intro">
-        <p class="section-eyebrow light">Application</p>
-        <h2>Send us your application</h2>
-        <p>Ready to sail with us? Complete the form and attach your CV or completed application form. Our crewing department will get back to you.</p>
-        <ul class="apply-points">
-          <li><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-file-check"/></svg>Accepted files: PDF, DOC, DOCX, JPG, PNG</li>
-          <li><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-paperclip"/></svg>Maximum file size: 5 MB</li>
-          <li><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-shield-check"/></svg>Your data is used only for recruitment purposes</li>
-        </ul>
+        <div class="intro-pane" data-pane="applicationForm">
+          <p class="section-eyebrow light">Application</p>
+          <h2>Send us your application</h2>
+          <p>Ready to sail with us? Complete the form and attach your CV or completed application form. Our crewing department will get back to you.</p>
+          <ul class="apply-points">
+            <li><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-file-check"/></svg>Accepted files: PDF, DOC, DOCX, JPG, PNG</li>
+            <li><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-paperclip"/></svg>Maximum file size: 5 MB</li>
+            <li><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-shield-check"/></svg>Your data is used only for recruitment purposes</li>
+          </ul>
+        </div>
+        <div class="intro-pane" data-pane="crewRequestForm" hidden>
+          <p class="section-eyebrow light">Crew request</p>
+          <h2>Request crew for your vessel</h2>
+          <p>Tell us the vessel, the rank and the joining details. We come back with pre-vetted candidates — and any crew vacancy is filled within 48 hours.</p>
+          <ul class="apply-points">
+            <li><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-users"/></svg>Officers, engineers and ratings for all vessel types</li>
+            <li><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-badge-check"/></svg>Certificates, medicals and references verified before we present</li>
+            <li><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-clock"/></svg>Urgent vacancies covered from our standby channels</li>
+          </ul>
+        </div>
         <div class="apply-contactline">Prefer email? Write to <a href="mailto:crew@kalliston.energy">crew@kalliston.energy</a> or WhatsApp <a href="tel:+447874268606">+44 7874 268606</a></div>
       </div>
 
@@ -334,6 +350,6 @@
   <a href="#apply" class="floating-cta" aria-label="Apply now">Apply</a>
 
   <script type="module" src="js/globe.js?v=4"></script>
-  <script src="js/main.js?v=5"></script>
+  <script src="js/main.js?v=6"></script>
 </body>
 </html>
