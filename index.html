@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=11" />
+  <link rel="stylesheet" href="css/styles.css?v=13" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 </head>
 <body>
@@ -50,7 +50,7 @@
         <a href="#contact">Contact</a>
       </nav>
       <div class="header-ctas">
-        <a href="#apply" class="btn btn-outline header-cta" data-tab="crewRequestForm">Request Crew <span aria-hidden="true">&rarr;</span></a>
+        <a href="#apply" class="btn btn-primary header-cta" data-tab="crewRequestForm">Request Crew <span aria-hidden="true">&rarr;</span></a>
         <a href="#apply" class="btn btn-primary header-cta" data-tab="applicationForm">Apply Now</a>
       </div>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -62,7 +62,7 @@
       <a href="#why">Why Us</a>
       <a href="#process">Process</a>
       <a href="#contact">Contact</a>
-      <a href="#apply" class="btn btn-outline" data-tab="crewRequestForm">Request Crew &rarr;</a>
+      <a href="#apply" class="btn btn-primary" data-tab="crewRequestForm">Request Crew &rarr;</a>
       <a href="#apply" class="btn btn-primary" data-tab="applicationForm">Apply Now</a>
     </div>
   </header>
@@ -76,8 +76,8 @@
         <p class="hero-lead">Kalliston Energy Group Ltd connects shipowners and managers with certified, sea-ready officers and ratings — vetted, documented and ready to sail.</p>
         <p class="hero-highlight"><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-clock"/></svg><strong>Any Crew Vacancy Filled Within 48 Hours</strong></p>
         <div class="hero-actions">
+          <a href="#apply" class="btn btn-primary btn-lg" data-tab="crewRequestForm">Request Crew <span aria-hidden="true">&rarr;</span></a>
           <a href="#apply" class="btn btn-primary btn-lg" data-tab="applicationForm">Submit Your Application</a>
-          <a href="#apply" class="btn btn-ghost btn-lg" data-tab="crewRequestForm">Request Crew <span aria-hidden="true">&rarr;</span></a>
         </div>
         <div class="hero-trust">
           <span><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg> MLC 2006 aligned</span>
@@ -243,9 +243,7 @@
         </div>
 
       <form class="apply-form" id="applicationForm" role="tabpanel" aria-labelledby="tab-seafarer" novalidate>
-        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
-        <input type="hidden" name="subject" value="New crew application — Kalliston website" />
-        <input type="hidden" name="from_name" value="Kalliston Website" />
+        <input type="hidden" name="form_type" value="seafarer" />
         <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
 
         <div class="field-row">
@@ -276,9 +274,7 @@
       </form>
 
       <form class="apply-form" id="crewRequestForm" role="tabpanel" aria-labelledby="tab-owner" novalidate hidden>
-        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
-        <input type="hidden" name="subject" value="New crew request — Kalliston website" />
-        <input type="hidden" name="from_name" value="Kalliston Website" />
+        <input type="hidden" name="form_type" value="crew_request" />
         <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
 
         <div class="field-row">
@@ -350,6 +346,6 @@
   <a href="#apply" class="floating-cta" aria-label="Apply now">Apply</a>
 
   <script type="module" src="js/globe.js?v=4"></script>
-  <script src="js/main.js?v=6"></script>
+  <script src="js/main.js?v=7"></script>
 </body>
 </html>

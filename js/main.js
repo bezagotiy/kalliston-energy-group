@@ -157,15 +157,6 @@
         return;
       }
 
-      var accessKey = form.querySelector('[name="access_key"]').value;
-      if (!accessKey || accessKey.indexOf("YOUR_WEB3FORMS") !== -1) {
-        showStatus(
-          "The form is not configured yet. Add your Web3Forms access key to enable sending.",
-          "error"
-        );
-        return;
-      }
-
       var data = new FormData(form);
 
       submitBtn.classList.add("is-loading");
@@ -173,7 +164,7 @@
       submitBtn.textContent = "Sending…";
       showStatus("Sending your application…", "loading");
 
-      fetch("https://api.web3forms.com/submit", {
+      fetch("send.php", {
         method: "POST",
         body: data
       })
@@ -267,18 +258,12 @@
       return;
     }
 
-    var accessKey = crewForm.querySelector('[name="access_key"]').value;
-    if (!accessKey || accessKey.indexOf("YOUR_WEB3FORMS") !== -1) {
-      status("The form is not configured yet. Add your Web3Forms access key to enable sending.", "error");
-      return;
-    }
-
     crewBtn.classList.add("is-loading");
     crewBtn.disabled = true;
     crewBtn.textContent = "Sending\u2026";
     status("Sending your crew request\u2026", "loading");
 
-    fetch("https://api.web3forms.com/submit", {
+    fetch("send.php", {
       method: "POST",
       body: new FormData(crewForm)
     })
