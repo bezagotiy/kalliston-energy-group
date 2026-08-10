@@ -195,7 +195,8 @@ if (canvas) {
   let dragOffset = 0;
 
   try {
-    const globe = createGlobe(canvas, {
+    let globe = null;
+    const globeOpts = {
       devicePixelRatio: 2,
       width: width * 2,
       height: width * 2,
@@ -218,6 +219,43 @@ if (canvas) {
         state.phi = currentPhi;
         drawRoutes(currentPhi);
       },
+    };
+
+    // Mount/unmount the globe so no WebGL or canvas work happens while the hero
+    // is off-screen or the tab is in the background — that work was the main
+    // source of scroll jank on lower-powered machines.
+    function mountGlobe() {
+      if (!globe) globe = createGlobe(canvas, globeOpts);
+    }
+    function unmountGlobe() {
+      if (globe) {
+        globe.destroy();
+        globe = null;
+        if (rctx) rctx.clearRect(0, 0, routeCanvas.width, routeCanvas.height);
+      }
+    }
+    function inView() {
+      const r = wrap.getBoundingClientRect();
+      return r.bottom > -200 && r.top < window.innerHeight + 200;
+    }
+
+    mountGlobe();
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting && !document.hidden) mountGlobe();
+            else unmountGlobe();
+          });
+        },
+        { rootMargin: "200px 0px" }
+      ).observe(wrap);
+    }
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) unmountGlobe();
+      else if (inView()) mountGlobe();
     });
 
     requestAnimationFrame(function () {
@@ -249,9 +287,7 @@ if (canvas) {
     window.addEventListener("pointermove", onMove);
     canvas.style.cursor = "grab";
 
-    window.addEventListener("beforeunload", function () {
-      globe.destroy();
-    });
+    window.addEventListener("beforeunload", unmountGlobe);
   } catch (err) {
     canvas.style.display = "none";
     if (routeCanvas) routeCanvas.style.display = "none";
